@@ -6,7 +6,7 @@
 
 #wget -O data/genomes/ecoli_rel606.fna.gz ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/017/985/GCA_000017985.1_ASM1798v1/GCA_000017985.1_ASM1798v1_genomic.fna.gz
 
-gunzip data/genomes/ecoli_rel606.fna.gz
+#gunzip data/genomes/ecoli_rel606.fna.gz
 
 
 # Make required directories
@@ -16,7 +16,7 @@ gunzip data/genomes/ecoli_rel606.fna.gz
 
 # Load softwares for analysis
 #Load BWA
-#module load BWA/0.7.18-GCCcore-13.3.0
+module load BWA/0.7.18-GCCcore-13.3.0
 
 # Load Sam 
 #module load SAMtools/1.18-GCC-12.3.0 
@@ -26,4 +26,5 @@ gunzip data/genomes/ecoli_rel606.fna.gz
 
 
 # Index the complete genome of E. coli using BWA
-#bwa index data/genomes/ecoli_rel606.fna
+bwa index data/genomes/ecoli_rel606.fna
+
