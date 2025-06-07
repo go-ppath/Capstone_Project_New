@@ -19,10 +19,10 @@
 #module load BWA/0.7.18-GCCcore-13.3.0
 
 # Load Sam 
-module load SAMtools/1.18-GCC-12.3.0 
+#module load SAMtools/1.18-GCC-12.3.0 
 
 # Load bcftools
-module load BCFtools/1.18-GCC-12.3.0 
+#module load BCFtools/1.18-GCC-12.3.0 
 
 
 # Index the complete genome of E. coli using BWA
@@ -32,38 +32,38 @@ module load BCFtools/1.18-GCC-12.3.0
 
 # Loop over various paired reads only and allign the reads to the reference E. coli genome
 
-for fwd in data/trimmed_fastq/*_1.paired.fastq.gz
-do
-   sample=$(basename $fwd _1.paired.fastq.gz)
+#for fwd in data/trimmed_fastq/*_1.paired.fastq.gz
+#do
+ #  sample=$(basename $fwd _1.paired.fastq.gz)
 
-   rev="data/trimmed_fastq/${sample}_2.paired.fastq.gz"
+  # rev="data/trimmed_fastq/${sample}_2.paired.fastq.gz"
 
 #echo $sample
 #echo $fwd
 #echo $rev
-echo "processing sample $sample"
+#echo "processing sample $sample"
 # Alignment using the bwa module
 #bwa mem data/genomes/ecoli_rel606.fna "$fwd" "$rev" > results/sam/${sample}.sam
 #done
 
 # Convert SAM files to BAM files and save in bam directory
-samtools view -S -b results/sam/$sample.sam > results/bam/$sample.bam
+#samtools view -S -b results/sam/$sample.sam > results/bam/$sample.bam
 
 # sorting the BAM files
-samtools sort results/bam/${sample}.bam -o results/bam/${sample}.sorted.bam
+#samtools sort results/bam/${sample}.bam -o results/bam/${sample}.sorted.bam
 
 # indexing the BAM files
-samtools index results/bam/${sample}.sorted.bam
+#samtools index results/bam/${sample}.sorted.bam
 
 # variant calling and generating bcf files
-bcftools mpileup -O b -o results/bcf/${sample}.bcf -f data/genomes/ecoli_rel606.fna results/bam/${sample}.sorted.bam
+#bcftools mpileup -O b -o results/bcf/${sample}.bcf -f data/genomes/ecoli_rel606.fna results/bam/${sample}.sorted.bam
 
 # variant calling and generating vcf files
-bcftools call --ploidy 1 -m -v -o results/vcf/${sample}.vcf results/bcf/${sample}.bcf
+#bcftools call --ploidy 1 -m -v -o results/vcf/${sample}.vcf results/bcf/${sample}.bcf
 
-echo "Processed sample: $sample"
+#echo "Processed sample: $sample"
 
-done
+#done
 
 
-echo "Processing successful for all samples"
+#echo "Processing successful for all samples"
