@@ -26,5 +26,22 @@ module load BWA/0.7.18-GCCcore-13.3.0
 
 
 # Index the complete genome of E. coli using BWA
-bwa index data/genomes/ecoli_rel606.fna
+#bwa index data/genomes/ecoli_rel606.fna
 
+# After indexing, align the genome with paired reads only
+
+# Loop over various paired reads only and allign the reads to the reference E. coli genome
+
+for fwd in data/trimmed_fastq/*_1.paired.fastq.gz
+do
+   sample=$(basename $fwd _1.paired.fastq.gz)
+
+   rev="data/trimmed_fastq/${sample}_2.paired.fastq.gz"
+
+echo $sample
+echo $fwd
+echo $rev
+echo "processing sample $sample"
+# Alignment using the bwa module
+bwa mem data/genomes/ecoli_rel606.fna "$fwd" "$rev" > results/sam/${sample}.sam
+done
