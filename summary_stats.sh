@@ -2,6 +2,11 @@
 
 # To have data in tidy format
 # added \t to give distinction in tsv file
-echo -e "filename\ttype\treads" > summary_stats.tsv
+#echo -e "filename\ttype\treads" > summary_stats.tsv
 
-
+# To get read length of raw_fastq files
+for raw in data/raw_fastq/*.fastq.gz
+do 
+  reads=$(zcat $raw | wc -l |awk '{print $1/4}')
+  echo -e "$raw\traw\t$reads" >> summary_stats.tsv
+done 
