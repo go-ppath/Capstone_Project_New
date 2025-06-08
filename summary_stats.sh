@@ -5,8 +5,18 @@
 #echo -e "filename\ttype\treads" > summary_stats.tsv
 
 # To get read length of raw_fastq files
-for raw in data/raw_fastq/*.fastq.gz
-do 
-  reads=$(zcat $raw | wc -l |awk '{print $1/4}')
-  echo -e "$raw\traw\t$reads" >> summary_stats.tsv
-done 
+#for raw in data/raw_fastq/*.fastq.gz
+#do 
+ # reads=$(zcat $raw | wc -l |awk '{print $1/4}')
+  #echo -e "$raw\traw\t$reads" >> summary_stats.tsv
+#done 
+
+
+# Get read length of trimmed file
+
+for trim in data/trimmed_fastq/*.fastq.gz
+do
+  echo $trim
+  reads=$(zcat $trim | wc -l |awk '{print $1/4}')
+  echo -e "$trim\ttrimmed\t$reads" >> summary_stats.tsv
+done
