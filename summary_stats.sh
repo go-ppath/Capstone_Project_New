@@ -38,11 +38,13 @@
 
 # To get variant site counts
 
-module load BCFtools/1.18-GCC-12.3.0
+#module load BCFtools/1.18-GCC-12.3.0
 
-for vcf in results/vcf/*.vcf
-do
-  echo $vcf
-  variants=$(bcftools view -H "$vcf" | wc -l)  # Count variant records, excluding header lines
-  echo -e "$vcf\tvariants\t$variants" >> summary_stats.tsv
-done
+#for vcf in results/vcf/*.vcf
+#do
+ # echo $vcf
+  #variants=$(bcftools view -H "$vcf" | wc -l)  # Count variant records, excluding header lines
+  #echo -e "$vcf\tvariants\t$variants" >> summary_stats.tsv
+#done
+
+
